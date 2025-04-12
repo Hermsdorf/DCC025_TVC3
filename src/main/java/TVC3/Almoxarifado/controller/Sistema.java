@@ -68,7 +68,7 @@ public class Sistema {
         return "cadastroFornecedor";
     }
 
-    @PostMapping("/cadastrar-fornecedor") // Deve bater com o action do formulário
+    @PostMapping("/cadastrar-fornecedor") 
     public String processarCadastro(
             @RequestParam String nome,
             @RequestParam String cnpj,
@@ -98,7 +98,6 @@ public class Sistema {
             produtos = almoxarifado.getEstoque().listarProdutos();
         }
 
-        // Sempre passar a lista de fornecedores do almoxarifado
         model.addAttribute("produtos", produtos);
         model.addAttribute("fornecedores", almoxarifado.getFornecedores());
         model.addAttribute("setor", setor.toLowerCase());
