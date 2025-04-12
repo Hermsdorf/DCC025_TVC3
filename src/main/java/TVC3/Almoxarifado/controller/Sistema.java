@@ -26,6 +26,7 @@ public class Sistema {
     Almoxarifado almoxarifado = new Almoxarifado();
     Farmacia farmacia = new Farmacia();
 
+    //Página inicial do sistema de almoxarifado. Começe por aqui!
     @GetMapping("/home")
     public String home() {
         return "home";
