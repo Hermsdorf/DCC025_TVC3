@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Fornecedores</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-primary {
+            background-color: #2c3e50;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1a252f;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .empty-message {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fornecedores Cadastrados</h1>
+        
+        <div class="actions">
+            <a th:href="@{/cadastrar-fornecedor}" class="btn btn-primary">
+                Cadastrar Novo Fornecedor
+            </a>
+            <span th:text="'Total: ' + ${fornecedores.size()} + ' fornecedores'"></span>
+        </div>
+        
+        <div th:if="${fornecedores.empty}" class="empty-message">
+            Nenhum fornecedor cadastrado no sistema.
+        </div>
+        
+        <table th:unless="${fornecedores.empty}">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                    <th>Endereço</th>
+                    <th>Telefone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="fornecedor : ${fornecedores}">
+                    <td th:text="${fornecedor.id}"></td>
+                    <td th:text="${fornecedor.nome}"></td>
+                    <td th:text="${fornecedor.cnpj}"></td>
+                    <td th:text="${fornecedor.endereco}"></td>
+                    <td th:text="${fornecedor.telefone}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a th:href="@{/home}" class="back-link">← Voltar para a página inicial</a>
+    </div>
+</body>
+</html>
